@@ -115,6 +115,14 @@ pacman -S mingw-w64-ucrt-x86_64-glfw
 pacman -S mingw-w64-ucrt-x86_64-glm
 ```
 
+## Assimp 설치
+
+그래픽스 프로젝트 중 [assimp](https://github.com/assimp/assimp)를 이용하는 경우가 있다. mingw-w64에서 아래와 같은 방법으로 assimp 패키지를 깔도록 한다. 
+
+```shell
+pacman -S mingw-w64-ucrt-x86_64-assimp
+```
+
 
 # Hello World with g++
 
@@ -277,14 +285,6 @@ make -f Makefile.mingw
 * MSYS2 설치 디렉토리가 `C:/msys64`가 아닌 경우, 자신의 설치 경로를 `Makefile.mingw`에 반영한다.
 * OpenGL 개발환경이 제대로 설치되었는지 확인하자.
 
-
-## Assimp 설치
-
-그래픽스 프로젝트 중 [assimp](https://github.com/assimp/assimp)를 이용하는 경우가 있다. mingw-w64에서 아래와 같은 방법으로 assimp 패키지를 깔도록 한다. 
-
-```shell
-pacman -S mingw-w64-ucrt-x86_64-assimp
-```
 
 
 
