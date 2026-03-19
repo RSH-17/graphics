@@ -125,18 +125,14 @@ pacman -S mingw-w64-ucrt-x86_64-assimp
 
 ### 참고: 각종 패키지 설치 방법
 
-본 교과목은 **Ubuntu LTS 18.04+**를 기준으로 진행하며, 패키지 설치는 기본적으로 `apt` 또는 `apt-get`을 사용해 설명한다.
+본 교과목은 Ubuntu LTS 18.04+를 기준으로 진행하며, 패키지 설치는 기본적으로 `apt` 또는 `apt-get`을 사용해 설명한다.
 
 다만, Windows에서 MSYS2를 사용하는 경우에는 앞서 살펴본 바와 같이 `pacman`이라는 다른 패키지 관리자를 사용해야 하므로 아래와 같이 대응하자.
-
-✅ MSYS2에서 패키지 설치 방법
 1. 설치하려는 패키지 이름에 ucrt64를 붙여 Google 검색
 2. 검색 결과에서 MSYS2 패키지 사이트 클릭
 3. 페이지의 Installation 항목에 있는 명령어를 복사해서 MSYS2 UCRT64 쉘에 붙여넣고 실행
 
 예를 들어, `pkg-config` 패키지를 설치하고자 하면, 다음과 같이 하면 된다.
-
-✅ 예시: pkg-config 설치
 1. Google에 `pkg-config ucrt64` 검색
 2. Package: mingw-w64-ucrt-x86_64-pkg-config 페이지 클릭
 3. Installation에 나온 명령 `pacman -S mingw-w64-ucrt-x86_64-pkg-config` 복사해서 MSYS2 UCRT64 쉘에서 실행
