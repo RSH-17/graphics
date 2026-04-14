@@ -217,16 +217,42 @@ void update_buffer_objects()
   /////////////////////////////////////////////////////////////////////
   /// TODO: 아래 코드를 적절히 수정하여 프로그램을 완성하시오.
   /////////////////////////////////////////////////////////////////////
+  // g_mesh_model = kCube;
+  // g_mesh_type = kTriangleSoup;
 
-  g_position_size = sizeof(cube::triangle_soup::position);
-  g_position_data = cube::triangle_soup::position;
+  if (g_mesh_model == kCube && g_mesh_type == kTriangleSoup)
+  {
+    g_position_size = sizeof(cube::triangle_soup::position);
+    g_position_data = cube::triangle_soup::position;
 
-  g_color_size = sizeof(cube::triangle_soup::color);
-  g_color_data = cube::triangle_soup::color;
+    g_color_size = sizeof(cube::triangle_soup::color);
+    g_color_data = cube::triangle_soup::color;
 
-  assert(g_position_size == g_color_size);
-  g_num_position = cube::triangle_soup::num_position;
+    assert(g_position_size == g_color_size);
+    g_num_position = cube::triangle_soup::num_position;
+  }
+  else if (g_mesh_model == kAvocado && g_mesh_type == kTriangleSoup)
+  {
+    g_position_size = sizeof(avocado::triangle_soup::position);
+    g_position_data = avocado::triangle_soup::position;
 
+    g_color_size = sizeof(avocado::triangle_soup::color);
+    g_color_data = avocado::triangle_soup::color;
+
+    assert(g_position_size == g_color_size);
+    g_num_position = avocado::triangle_soup::num_position;
+  }
+  else if (g_mesh_model == kDonut && g_mesh_type == kTriangleSoup)
+  {
+    g_position_size = sizeof(donut::triangle_soup::position);
+    g_position_data = donut::triangle_soup::position;
+
+    g_color_size = sizeof(donut::triangle_soup::color);
+    g_color_data = donut::triangle_soup::color;
+
+    assert(g_position_size == g_color_size);
+    g_num_position = donut::triangle_soup::num_position;
+  }
 
   // VBO
   glBindBuffer(GL_ARRAY_BUFFER, position_buffer); 
