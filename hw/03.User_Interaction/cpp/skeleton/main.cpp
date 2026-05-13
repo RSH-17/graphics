@@ -130,8 +130,17 @@ void compose_imgui_frame()
   {
     ImGui::Begin("콘트롤(control)");
 
-    // TODO
-    ImGui::SliderFloat("translate", &g_vec_model_translate[0], -3.0f, 3.0f);
+    // TODO Start:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+    // translate control - oneline - xyz
+    ImGui::SliderFloat3("translate", &g_vec_model_translate[0], -3.0f, 3.0f);
+
+    // Quaternion Control
+    ImGui::gizmo3D("rotation", g_quat_model_rotation);
+
+    // Scale Control
+    ImGui::SliderFloat3("scale", &g_vec_model_scale[0], -3.0f, 3.0f);
+
+    // TODO END:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
     ImGui::End();
   }
@@ -182,13 +191,25 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
   if (key == GLFW_KEY_L && action == GLFW_PRESS)
     g_vec_model_translate[0] += 0.1f;
   
-  // TODO
+  // TODO START :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  // move down
+  if (key == GLFW_KEY_J && action == GLFW_PRESS) 
+    g_vec_model_translate[1] -= 0.1f;
 
-  // scale
+  // move up
+  if (key == GLFW_KEY_K && action == GLFW_PRESS) 
+    g_vec_model_translate[1] += 0.1f;
+  // TODO END :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+  // scale (+)
   if (key == GLFW_KEY_EQUAL && action == GLFW_PRESS)
     g_vec_model_scale += 0.1f;
   
-  // TODO
+  // TODO START :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  // scale (-)
+  if (key == GLFW_KEY_MINUS && action == GLFW_PRESS)
+    g_vec_model_scale -= 0.1f;
+  // TODO END :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 }
 
 
@@ -314,7 +335,18 @@ void set_transform()
   g_mat_proj = glm::perspective(glm::radians(g_fovy), g_aspect, 0.001f, 1000.f);
   
   // TODO: erase the following line and write your codes to properly set g_mat_model as T*R*S
+  // g_mat_model = glm::translate(g_vec_model_translate);
+  // TODO START :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  // translate
   g_mat_model = glm::translate(g_vec_model_translate);
+
+  // rotation
+  g_mat_model = g_mat_model * glm::mat4_cast(g_quat_model_rotation);
+
+  // scale
+  g_mat_model = glm::scale(g_mat_model, g_vec_model_scale);
+  
+  // TODO END :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 }
 
 
@@ -358,8 +390,11 @@ void init_scene()
   g_vec_model_translate = glm::vec3(0.0);
   g_vec_model_scale = glm::vec3(1.f);
 
+  // TODO START :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
   // TODO: initialize quaternion for model rotation
-  // g_quat_model_rotation = ...
+  g_quat_model_rotation = glm::quat(1.f, 0.f, 0.f, 0.f);
+
+  // TODO END :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
   g_fovy = 60.0f;
   g_aspect = 1.0f;
